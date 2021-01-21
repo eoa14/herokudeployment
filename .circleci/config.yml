@@ -1,17 +1,7 @@
+version: 2.1
+orbs:
+  heroku: circleci/heroku@0.0.10
 workflows:
-  version: 2
-  deploy_app_on_heroku:
+  heroku_deploy:
     jobs:
-      - deploy
-
-version: 2
-jobs:
-  deploy:
-    docker:
-      - image: circleci/python:3.9.0
-    steps:
-      - checkout
-      - run:
-          name: Deploy Master to Heroku
-          command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
+      - heroku/deploy-via-git
